@@ -1,0 +1,21 @@
+<div class="floatMsg">
+	<div class="wrapper">
+		<div class="messageBox" ng-if="msg.type!='group'">
+			<div class="header">{{msg.header}}
+				<div class="closeMsg">&times;</div>
+			</div>
+			<div class="imgPart"></div>
+			<div class="mainPart">
+				<div class="content">{{msg.content}}</div>
+				<div class="buttons" ng-hide="msg.type='note'">
+					<button ng-show="msg.type=='ok_cancel_confirm'">Cancel</button> 
+					<button>Ok</button>
+				</div>
+			</div>
+		</div>
+		<div class="groupBox" ng-if="msg.type=='group'">
+			<div class="msgCount">msg.count</div>
+			<div class="text">more message{{msg.count>1 ? 's':''}}</div>
+		</div>
+	</div>
+</div>
