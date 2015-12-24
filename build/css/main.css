@@ -1,0 +1,190 @@
+.demoUi .newMessage {
+  width: 277px;
+  padding: 10px;
+}
+.demoUi .newMessage label {
+  display: inline-block;
+  width: 100px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 2em;
+  vertical-align: middle;
+}
+.demoUi .newMessage input,
+.demoUi .newMessage select {
+  display: inline-block;
+  vertical-align: middle;
+}
+.demoUi .newMessage input {
+  width: 168px;
+}
+.demoUi .newMessage select {
+  width: 172px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+.demoUi .newMessage .post {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.floatMsg > .wrapper {
+  line-height: 14px;
+  text-align: center;
+}
+.floatMsg > .wrapper .messageBox,
+.floatMsg > .wrapper .groupBox {
+  line-height: 18px;
+  text-align: left;
+  display: inline-block;
+  width: 300px;
+  height: 120px;
+  border-radius: 5px;
+  border: none;
+  background: linear-gradient(0deg, #555, #777) #555;
+  color: #fff;
+  margin: 0 0 10px 10px;
+  box-shadow: 5px 5px 10px #999;
+  transition: all 2s;
+}
+.floatMsg > .wrapper .messageBox .header {
+  margin: 5px 0 8px 0;
+  text-indent: 5px;
+  position: relative;
+  font-weight: bold;
+  display: inline-block;
+  width: 260px;
+  border-bottom: 1px solid #fff;
+}
+.floatMsg > .wrapper .messageBox .header .closeMsg {
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: -36px;
+  top: 0;
+  line-height: 19px;
+  background: radial-gradient(#fff, #ddd) #fff;
+  color: #000;
+  text-align: center;
+  text-shadow: 0 1px #fff;
+  cursor: pointer;
+  text-indent: 0;
+}
+.floatMsg > .wrapper .messageBox .imgPart {
+  display: inline-block;
+  margin: 5px 10px 0 8px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background-color: #ccc;
+}
+.floatMsg > .wrapper .messageBox .mainPart {
+  width: 208px;
+  display: inline-block;
+  vertical-align: top;
+}
+.floatMsg > .wrapper .messageBox .mainPart .content {
+  height: 52px;
+  overflow-y: auto;
+  margin-bottom: 4px;
+}
+.floatMsg > .wrapper .messageBox .mainPart .buttons {
+  text-align: right;
+}
+.floatMsg > .wrapper .messageBox .mainPart .buttons button {
+  width: 75px;
+  height: 25px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  background: linear-gradient(0deg, #999 55%, #aaa) #999;
+  cursor: pointer;
+}
+.floatMsg > .wrapper .messageBox .mainPart .buttons button:active {
+  background: linear-gradient(0deg, #aaa 55%, #999) #aaa;
+}
+.messageContainer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 320px;
+  border: 1px solid red;
+}
+
+.floatMsg > .wrapper .messageBox,
+.floatMsg > .wrapper .groupBox {
+  animation-duration: .5s;
+  animation-name: showbox;
+}
+@keyframes showbox {
+  from {
+    margin-left: 330px;
+    opacity: 0;
+  }
+  70% {
+    margin-left: 0px;
+    opacity: .8;
+  }
+  to {
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+.floatMsg > .wrapper .windowCollapse {
+  animation-duration: .3s;
+  animation-name: collapseBox;
+  overflow: hidden;
+  box-shadow: none;
+}
+.floatMsg > .wrapper .windowCollapse div {
+  opacity: 0;
+}
+@keyframes collapseBox {
+  from {
+    width: 200px;
+    color: rgba(0, 0, 0, 0);
+  }
+  10% {
+    width: 120px;
+    height: 120px;
+    border-radius: 10%;
+  }
+  20% {
+    border-radius: 50%;
+  }
+  30% {
+    border-radius: 50%;
+  }
+  to {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+    margin: 0;
+    border-radius: 50%;
+  }
+}
+.flattenWnd {
+  animation-duration: .3s;
+  animation-name: flattenWindow;
+  overflow: hidden;
+}
+@keyframes flattenWindow {
+  from {
+    opacity: 1;
+  }
+  10% {
+    opacity: .8;
+    height: 100px;
+  }
+  90% {
+    opacity: .9;
+    height: 10px;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}

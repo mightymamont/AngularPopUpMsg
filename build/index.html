@@ -5,28 +5,36 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Floating messages demo</title>
 
-	<link rel="stylesheet" href="css/main.css">
 	
 	<script src="js/angular.js"></script>
 	<script src="js/angular-mocks.js"></script>
 	
 	<script src="js/main.js"></script>
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="testApp">
-	<section ng-controller="frontPage" ng-if="application.ready">
-		<div class="newMessage">
-			<label>Header</label> <input type="text">
-			<label>Body</label> <input type="text">
-			<label>Category</label> <select></select>
-			<label>Button</label> <select></select>
-			<div class="post">
-				<button>Send</button>
+	<h1>Test app</h1>	
+	<section class="demoUi" ng-controller="frontPage">
+		<div ng-if="application.ready">
+			<div class="newMessage">
+				<label>Header</label> <input type="text"> <br>
+				<label>Body</label> <input type="text"> <br>
+				<label>Category</label> <select>
+					<option ng-repeat="(key,val) in application.categories" value="{{key}}">{{val}}</option>
+				</select> <br>
+				<label>Button</label> <select>
+					<option ng-repeat="(key,val) in application.buttons" value="{{key}}">{{val}}</option>
+				</select>
+				<div class="post">
+					<button>Send</button>
+				</div>
 			</div>
-		</div>
 
-		<hr>
-
-		<message-window ng-repeat="msg in application.data" ng-model="msg"></message-window>
+			<div class="messageContainer">
+				<message-window ng-repeat="msg in application.data" ng-model="msg"></message-window>				
+			</div>
+		</div>		
 	</section>
+
 </body>
 </html>

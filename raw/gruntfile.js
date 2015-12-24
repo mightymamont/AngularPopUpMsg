@@ -19,9 +19,11 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'project/images/', src: ['**'], dest: '../build/img'}
         ]
       },
-        html: [
+      html: {
+          files: [
           {expand: true, cwd: 'project/html/', src: ['*.html'], dest: '../build/'}
         ]
+      }
     },
 
     // node_modules\grunt-contrib-uglify\README.md
@@ -31,7 +33,16 @@ module.exports = function(grunt) {
           mangle: false,
           beautify: true
         },
-        files: {'../build/js/main.js':['project/js/main.js']}
+        files: {'../build/js/main.js':['project/js/main.js','project/js/functions.js']}
+      }
+    },
+
+    // node_modules\grunt-contrib-less\README.md
+    less: {
+      main: {
+        files: {
+          "../build/css/main.css": ["project/styles/page.less", "project/styles/message.less", "project/styles/animation.less"]
+        }
       }
     },
 
@@ -42,8 +53,12 @@ module.exports = function(grunt) {
         tasks: ['uglify:beautyJs']
       },
       html: {
-        files: ['project/html/'],
+        files: ['project/html/*.html'],
         tasks: ['copy:html']
+      },
+      css: {
+        files: ['project/styles/*.less'],
+        tasks: ['less']
       }
     }
 
@@ -52,8 +67,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-ngdocs');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('_watcher', ['watch']);
-  grunt.registerTask('default', ['ngdocs','copy','uglify','_watcher']);
+  grunt.registerTask('default', ['ngdocs','copy','uglify','less','_watcher']);
 };

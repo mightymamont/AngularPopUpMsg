@@ -1,15 +1,15 @@
 <div class="floatMsg">
 	<div class="wrapper">
 		<div class="messageBox" ng-if="msg.type!='group'">
-			<div class="header">{{msg.header}}
-				<div class="closeMsg">&times;</div>
+			<div class="header">{{msg.header.length>22 ? msg.header.slice(0,22)+'...':msg.header}}
+				<div class="closeMsg" ng-click="closeWindow('close')">&times;</div>
 			</div>
-			<div class="imgPart"></div>
+			<div class="imgPart" style="background: url(img/{{getIcon(msg.category)}}) no-repeat center"></div>
 			<div class="mainPart">
 				<div class="content">{{msg.content}}</div>
-				<div class="buttons" ng-hide="msg.type='note'">
-					<button ng-show="msg.type=='ok_cancel_confirm'">Cancel</button> 
-					<button>Ok</button>
+				<div class="buttons" ng-hide="msg.type=='note'">
+					<button ng-show="msg.type=='ok_cancel_confirm'" ng-click="closeWindow('cancel')">Cancel</button> 
+					<button ng-click="closeWindow('ok')">Ok</button>
 				</div>
 			</div>
 		</div>

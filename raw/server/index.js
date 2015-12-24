@@ -1,9 +1,12 @@
 var express = require('express')
 var app = express()
 
-var path = __dirname.replace('raw\\server', 'build\\');
+var path = __dirname.replace('raw\\server', 'build\\'),
+	docPath = path.replace('build\\','docs\\');
+
 app.use(express.static(path));
-console.log('Static server started from "%s" folder',path);
+app.use('/docs', express.static(docPath));
+console.log('Static server started from "%s" folder. Docs in %s',path, docPath);
 
 var server = app.listen(80, function () {
 

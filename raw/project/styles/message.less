@@ -1,0 +1,103 @@
+// Message window
+@mwWidth: 300px;
+@mwHeight: 120px;
+@mwRadius: 5px;
+
+@icoBox: 60px;
+
+.floatMsg>.wrapper {
+	line-height: 14px;
+	text-align: center;
+	.messageBox, .groupBox {
+		line-height: 18px;
+		text-align: left;
+		display: inline-block;
+		width: @mwWidth;
+		height: @mwHeight;
+		border-radius: @mwRadius;
+		border: none;
+		background: linear-gradient(0deg, #555, #777) #555;
+		color: #fff;
+		margin: 0 0 10px 10px;
+		box-shadow: 5px 5px 10px #999;
+		transition: all 2s;
+	}
+
+	.messageBox {
+		.header {
+			margin: 5px 0 8px 0;
+			text-indent: 5px;
+			position: relative;
+			font-weight: bold;
+			display: inline-block;
+			width: @mwWidth - 40px;
+			border-bottom: 1px solid #fff;
+
+			.closeMsg {
+				border-radius: 50%;
+				width: 18px;
+				height: 18px;
+				position: absolute;
+				right: -36px;
+				top: 0;
+				line-height: 19px;
+				background: radial-gradient(#fff, #ddd) #fff;
+				color: #000;
+				text-align: center;
+				text-shadow: 0 1px #fff;
+				cursor: pointer;
+				text-indent: 0;
+			}
+		}
+
+		.imgPart {
+			display: inline-block;
+			margin: 5px 10px 0 8px;
+			width: 60px;
+			height: @icoBox;
+			width: @icoBox;
+			border-radius: 50%;
+			border: 1px solid #fff;
+			background-color: #ccc;
+		}
+
+		.mainPart {
+			width: 208px;
+			display: inline-block;
+			vertical-align: top;
+
+			.content {
+				height: 52px;
+				overflow-y: auto;
+				margin-bottom: 4px;
+			}
+
+			.buttons {
+				text-align: right;
+				button {
+					width: 75px;
+					height: 25px;
+					border: 1px solid #fff;
+					border-radius: @mwRadius - 2px;
+					color: #fff;
+					background: linear-gradient(0deg, #999 55%, #aaa) #999;
+					cursor: pointer;		
+				}
+
+				button:active {
+					background: linear-gradient(0deg, #aaa 55%, #999) #aaa;					
+				}
+			}
+		}
+	}
+}
+
+
+// message window container
+.messageContainer {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	width: @mwWidth+20px;
+	border:1px solid red;
+}
