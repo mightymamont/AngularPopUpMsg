@@ -32,22 +32,23 @@
 			display: inline-block;
 			width: @mwWidth - 40px;
 			border-bottom: 1px solid #fff;
+		}
 
-			.closeMsg {
-				border-radius: 50%;
-				width: 18px;
-				height: 18px;
-				position: absolute;
-				right: -36px;
-				top: 0;
-				line-height: 19px;
-				background: radial-gradient(#fff, #ddd) #fff;
-				color: #000;
-				text-align: center;
-				text-shadow: 0 1px #fff;
-				cursor: pointer;
-				text-indent: 0;
-			}
+		.closeMsg {
+			display: inline-block;
+			border-radius: 50%;
+			width: 18px;
+			height: 18px;
+			position: relative;
+			top: 2px;
+			left: 10px;
+			line-height: 19px;
+			background: radial-gradient(#fff, #ddd) #fff;
+			color: #000;
+			text-align: center;
+			text-shadow: 0 1px #fff;
+			cursor: pointer;
+			text-indent: 0;
 		}
 
 		.imgPart {
@@ -90,6 +91,29 @@
 			}
 		}
 	}
+
+	.groupBox {
+		.msgCount {
+			display: inline-block;
+			margin: 25px 10px 0 8px;
+			height: @icoBox;
+			width: @icoBox;
+			border-radius: 50%;
+			border: 1px solid #fff;
+			background-color: #ccc;
+			font-weight: bold;
+			font-size: 1.5em;
+			text-align: center;
+			line-height: 2.5em;
+		}
+
+		.text {
+			display: inline-block;
+			text-indent: 10px;
+			width: 160px;
+			font-weight: bold;
+		}
+	}
 }
 
 
@@ -99,5 +123,4 @@
 	right: 0;
 	bottom: 0;
 	width: @mwWidth+20px;
-	border:1px solid red;
 }

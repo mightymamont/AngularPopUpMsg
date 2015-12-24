@@ -1,9 +1,8 @@
 <div class="floatMsg">
 	<div class="wrapper">
 		<div class="messageBox" ng-if="msg.type!='group'">
-			<div class="header">{{msg.header.length>22 ? msg.header.slice(0,22)+'...':msg.header}}
-				<div class="closeMsg" ng-click="closeWindow('close')">&times;</div>
-			</div>
+			<div class="header">{{msg.header.length>22 ? msg.header.slice(0,22)+'...':msg.header}}</div>
+			<div class="closeMsg" ng-click="closeWindow('close')">&times;</div>
 			<div class="imgPart" style="background: url(img/{{getIcon(msg.category)}}) no-repeat center"></div>
 			<div class="mainPart">
 				<div class="content">{{msg.content}}</div>
@@ -14,7 +13,7 @@
 			</div>
 		</div>
 		<div class="groupBox" ng-if="msg.type=='group'">
-			<div class="msgCount">msg.count</div>
+			<div class="msgCount" style="background: url(img/{{getIcon(msg.category)}}) no-repeat center">{{msg.count}}</div>
 			<div class="text">more message{{msg.count>1 ? 's':''}}</div>
 		</div>
 	</div>

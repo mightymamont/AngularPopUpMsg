@@ -15,6 +15,7 @@
 <body ng-app="testApp">
 	<h1>Test app</h1>	
 	<section class="demoUi" ng-controller="frontPage">
+		<a href="#" ng-click="rone()">remove 1 element</a>
 		<div ng-if="application.ready">
 			<div class="newMessage">
 				<label>Header</label> <input type="text"> <br>
@@ -31,7 +32,7 @@
 			</div>
 
 			<div class="messageContainer">
-				<message-window ng-repeat="msg in application.data" ng-model="msg"></message-window>				
+				<message-window ng-repeat="msg in application.msgList(application.data)" ng-model="msg"></message-window>				
 			</div>
 		</div>		
 	</section>

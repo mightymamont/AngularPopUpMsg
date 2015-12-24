@@ -17,16 +17,10 @@ var testApp = angular.module('testApp',[]);
 testApp.controller('frontPage',function($scope){
 	var app = $scope.application = {};
 	
-	app.data = [
-		{category:'info', type:'ok_cancel_confirm', header: 'Заголовок этого окошечка WWWWWWWWWWWWWWWWWWW', content: 'Содержимое сообщения'},
-		{category:'info', type:'ok_cancel_confirm', header: 'Заголовок этого окошечка WWWWWWWWWWWWWWWWWWW', content: 'Содержимое сообщения'},
-		{category:'info', type:'ok_cancel_confirm', header: 'Заголовок этого окошечка WWWWWWWWWWWWWWWWWWW', content: 'Содержимое сообщения'},
-		{category:'info', type:'ok_cancel_confirm', header: 'Заголовок этого окошечка WWWWWWWWWWWWWWWWWWW', content: 'Содержимое сообщения'},
-		{category:'info', type:'ok_cancel_confirm', header: 'Заголовок этого окошечка WWWWWWWWWWWWWWWWWWW', content: 'Содержимое сообщения'},
-	];
+	app.data = startData;
 	app.categories = categories;
 	app.buttons = buttons;
-
+	app.msgList = getMessagesList;
 	app.ready = true;
 });
 
