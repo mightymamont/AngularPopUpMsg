@@ -4,35 +4,33 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Floating messages demo</title>
-
 	
 	<script src="js/angular.js"></script>
-	<script src="js/angular-mocks.js"></script>
 	
 	<script src="js/main.js"></script>
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="testApp">
 	<h1>Test app</h1>	
-	<section class="demoUi" ng-controller="frontPage">
-		<a href="#" ng-click="rone()">remove 1 element</a>
+	<section class="demoUi" ng-controller="FrontPageController">
 		<div ng-if="application.ready">
 			<div class="newMessage">
-				<label>Header</label> <input type="text"> <br>
-				<label>Body</label> <input type="text"> <br>
-				<label>Category</label> <select>
+				<label>Header</label> <input type="text" ng-model="application.header"> <br>
+				<label>Body</label> <input type="text" ng-model="application.content"> <br>
+				<label>Category</label> <select ng-model="application.category">
 					<option ng-repeat="(key,val) in application.categories" value="{{key}}">{{val}}</option>
 				</select> <br>
-				<label>Button</label> <select>
+				<label>Button</label> <select ng-model="application.button">
 					<option ng-repeat="(key,val) in application.buttons" value="{{key}}">{{val}}</option>
 				</select>
 				<div class="post">
-					<button>Send</button>
+					<button ng-click="application.addNewMessage(application.header, application.content, application.category, application.button)"
+					ng-disabled="!(application.header && application.content && application.category && application.button)">Send</button>
 				</div>
 			</div>
 
 			<div class="messageContainer">
-				<message-window ng-repeat="msg in application.msgList(application.data)" ng-model="msg"></message-window>				
+				<message-window ng-repeat="msg in application.msgList" ng-model="msg"></message-window>				
 			</div>
 		</div>		
 	</section>

@@ -15,8 +15,7 @@ module.exports = function(grunt) {
       common: {
         files:[          
           {expand: true, cwd: 'libs/angular/', src: ['angular.js'], dest: '../build/js'},
-          {expand: true, cwd: 'libs/angular-mocks/', src: ['angular-mocks.js'], dest: '../build/js'},
-          {expand: true, cwd: 'project/images/', src: ['**'], dest: '../build/img'}
+          {expand: true, cwd: 'project/images/', src: ['**'], dest: '../build/img'},
         ]
       },
       html: {
@@ -33,7 +32,7 @@ module.exports = function(grunt) {
           mangle: false,
           beautify: true
         },
-        files: {'../build/js/main.js':['project/js/main.js','project/js/functions.js']}
+        files: {'../build/js/main.js':['project/js/functions.js','project/js/main.js']}
       }
     },
 

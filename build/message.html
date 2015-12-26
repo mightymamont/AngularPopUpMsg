@@ -1,4 +1,4 @@
-<div class="floatMsg">
+<div class="floatMsg" ng-mouseenter="clearCloseTimeout(msg)" ng-mouseleave="setCloseTimeout(msg)">
 	<div class="wrapper">
 		<div class="messageBox" ng-if="msg.type!='group'">
 			<div class="header">{{msg.header.length>22 ? msg.header.slice(0,22)+'...':msg.header}}</div>
