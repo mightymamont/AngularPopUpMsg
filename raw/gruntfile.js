@@ -48,7 +48,7 @@ module.exports = function(grunt) {
     // node_modules\grunt-karma\README.md
     karma: {
       unit: {
-        configFile: 'project/tests/karma.conf.js'
+        configFile: 'project/tests/karma.conf.grunt.js'
       }
     },
 

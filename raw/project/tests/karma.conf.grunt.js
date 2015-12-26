@@ -7,6 +7,7 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+    background: true,
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -33,8 +34,8 @@ module.exports = function(config) {
     },
         
     coverageReporter: {
-        // type: 'text'
-        type: 'html', subdir: 'report'
+        type: 'text'
+        // type: 'html', subdir: 'report'
     },
     
     // test results reporter to use

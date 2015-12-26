@@ -32,7 +32,7 @@ describe('Test FrontPageController', function(){
 		expect($scope.application.data[0].content).toBe('b');			
 	});
 
-	it('Add few messages', function() {
+	it('View messages in output row', function() {
 		for(var i=0;i<10;i++)
 			$scope.application.addNewMessage('a'+i,'b','c','d');
 
@@ -43,11 +43,76 @@ describe('Test FrontPageController', function(){
 
 	it('Get new message from server', function() {
 		$scope.application.data = [];
-		messages.start($scope.application.data);
+		// messages.start($scope.application.data);
 		messages.stop();
 		setTimeout(function  () {
 			expect($scope.application.data.length).toBe(1);
 		}, 100);
 	});
 
+});
+
+
+describe('Test directive "messageWindow"', function(){
+	beforeEach(module('testApp'));
+
+	var $scope, scope, http, element;
+
+	beforeEach(inject(function($rootScope, _$httpBackend_, $compile, $templateCache) {
+		$scope = $rootScope.$new();		
+		http = _$httpBackend_;
+
+		http
+		.when('POST', '/api/notification/confirm')
+		.respond({});
+		$templateCache.put('message.html', '<div>Some html code {{getIcon("info")}}</div>');
+
+
+		$scope.msg = {
+			id: 100,
+			from: 'sender',
+			category: 'warning',
+			header: 'Tests are very important',
+			content: 'I need more tests',
+			type: 'note'
+		};
+
+		element = angular.element('<message-window ng-model="msg"></message-window>');
+		$compile(element)($scope);
+		$scope.$digest();
+
+		scope = element.isolateScope();
+		scope.$apply();
+
+	}));
+
+	it('Get icon test - info', function() {
+		expect(scope.getIcon('info')).toBe('info.png');
+	});
+
+	it('Get icon test - warning', function() {
+		expect(scope.getIcon('warning')).toBe('warn.png');
+	});
+
+	it('Get icon test - error', function() {
+		expect(scope.getIcon('error')).toBe('error.png');
+	});
+
+	it('Close message window',function () {
+		scope.closeWindow('close');
+		setTimeout(function(){
+			expect(scope.msg.status).toBe('accepted');
+		}, 100);
+	});
+
+	it('Autoclose timeout', function() {
+		scope.setCloseTimeout(scope.msg);
+		expect(scope.msg.$$countdown).toBeGreaterThan(0);		
+	});
+
+	it('Abort autoclose', function() {
+		scope.setCloseTimeout(scope.msg);
+		scope.clearCloseTimeout(scope.msg)
+		expect(scope.msg.$$countdown).toBeUndefined();		
+	});
 });

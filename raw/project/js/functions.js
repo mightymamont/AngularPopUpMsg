@@ -1,7 +1,7 @@
 // config variables
 var msgUrl = '/api/notification/list',
 	answerUrl = '/api/notification/confirm',
-	requestInterval = 1000,
+	requestInterval = 10000,
 	closeWindowDelay = 290,
 	autocloseTimeout = 90000;
 
@@ -67,7 +67,7 @@ function closeMsgWindow(element, scope, service) {
 			return;
 		var selector = scope.msg.type == 'group' ? '.groupBox' : '.messageBox',
 			elm = element[0].querySelector(selector);
-		elm.classList.add('windowCollapse');
+		elm && elm.classList.add('windowCollapse');
 		setTimeout(function() {
 			scope.msg.closed = true;
 			if(scope.msg.$$countdown)
@@ -90,9 +90,11 @@ function sendConfirm (service) {
 		
 		service.post(answerUrl, answerData).then(
 			function(answer) {
+				msg.status = 'accepted';
 				console.info('Answer accepted');
 			},
 			function(answer) {
+				msg.status = 'failed';
 				console.error('Request rejected' || answer.data);
 			}
 		);

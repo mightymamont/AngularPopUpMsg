@@ -33,7 +33,7 @@ function closeMsgWindow(element, scope, service) {
     return function(type) {
         if (scope.msg) {
             var selector = "group" == scope.msg.type ? ".groupBox" : ".messageBox", elm = element[0].querySelector(selector);
-            elm.classList.add("windowCollapse"), setTimeout(function() {
+            elm && elm.classList.add("windowCollapse"), setTimeout(function() {
                 scope.msg.closed = !0, scope.msg.$$countdown && clearTimeout(scope.msg.$$countdown), 
                 scope.$apply();
             }, closeWindowDelay), service && sendConfirm(service)(type, scope.msg);
@@ -49,9 +49,9 @@ function sendConfirm(service) {
             result: "ok_confirm" == buttonType ? 1 : 0
         };
         service.post(answerUrl, answerData).then(function(answer) {
-            console.info("Answer accepted");
+            msg.status = "accepted", console.info("Answer accepted");
         }, function(answer) {
-            console.error("Request rejected");
+            msg.status = "failed", console.error("Request rejected");
         });
     };
 }
@@ -84,7 +84,7 @@ function clearCloseTimeout(scope) {
     };
 }
 
-var msgUrl = "/api/notification/list", answerUrl = "/api/notification/confirm", requestInterval = 1e3, closeWindowDelay = 290, autocloseTimeout = 9e4, testApp = angular.module("testApp", []);
+var msgUrl = "/api/notification/list", answerUrl = "/api/notification/confirm", requestInterval = 1e4, closeWindowDelay = 290, autocloseTimeout = 9e4, testApp = angular.module("testApp", []);
 
 testApp.constant("config", {
     categories: {
@@ -120,7 +120,7 @@ testApp.constant("config", {
     $scope.$watch("application.data", function(newValue, oldValue) {
         app.msgList = getMessagesList($scope)(newValue);
     }, !0), app.addNewMessage = addNewMessage($scope), app.header = "Demo header", app.content = "Demo content message in two lines", 
-    app.category = "info", app.button = "ok_confirm", app.ready = !0;
+    app.category = "info", app.button = "ok_confirm", messages.start(app.data), app.ready = !0;
 }), testApp.directive("messageWindow", function($http, getIcon) {
     return {
         restrict: "E",
