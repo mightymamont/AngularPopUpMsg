@@ -32,11 +32,11 @@ module.exports = function(config) {
         '../../../build/js/main.js': 'coverage'
     },
         
-    coverageReporter: [
-        {type: 'text'},
-        {type: 'html', subdir: 'report', file:'report'}
-    ],
-
+    coverageReporter: {
+        type: 'text'
+        // type: 'html', subdir: 'report'
+    },
+    
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter

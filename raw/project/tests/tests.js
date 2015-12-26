@@ -1,7 +1,7 @@
 describe('Test FrontPageController', function(){
 	beforeEach(module('testApp'));
 
-	var $controller, $scope, http;
+	var $controller, $scope, http, messages;
 
 	beforeEach(inject(function(_$controller_, $rootScope, _$httpBackend_) {
 		$controller = _$controller_;
@@ -19,11 +19,11 @@ describe('Test FrontPageController', function(){
 			type: 'note'
 		}]);
 
-		var scope = $scope,
-		msgs = {};
+		// server message emitter
+		messages = new NewMessages(http);
 		
 		// init controller
-		$controller('FrontPageController', {$scope: scope, $http: http, config: {}, messages: msgs});
+		$controller('FrontPageController', {$scope: $scope, $http: http, config: {}, messages: messages});
 	}));
 
 	it('Add new message.', function() {		
@@ -41,5 +41,13 @@ describe('Test FrontPageController', function(){
 		expect($scope.application.msgList.length).toBe(5);
 	});
 
+	it('Get new message from server', function() {
+		$scope.application.data = [];
+		messages.start($scope.application.data);
+		messages.stop();
+		setTimeout(function  () {
+			expect($scope.application.data.length).toBe(1);
+		}, 100);
+	});
 
 });

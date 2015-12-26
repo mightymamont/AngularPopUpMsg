@@ -89,7 +89,7 @@ testApp.controller('FrontPageController',function($scope, $http, config, message
 	app.category = 'info';
 	app.button = 'ok_confirm';
 
-	// messages.start(app.data);
+	messages.start(app.data);
 
 	// ready to display screen
 	app.ready = true;
