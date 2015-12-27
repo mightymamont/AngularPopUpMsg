@@ -16,7 +16,7 @@ function NewMessages($http) {
         $http.get(msgUrl).then(function(answer) {
             messageArray.concat(answer.data);
         }, function(error) {
-            console.error("Invalid URL or server troubles.", error.data || "Request failed.");
+            console.log(error), console.error("Invalid URL or server troubles.", error.data || "Request failed.");
         });
     }
     var timer, messageArray;
