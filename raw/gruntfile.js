@@ -46,14 +46,17 @@ module.exports = function(grunt) {
     },
 
     // node_modules\grunt-karma\README.md
-    karma: {
-      unit: {
-        configFile: 'project/tests/karma.conf.grunt.js'
-      }
-    },
+    // karma: {
+    //   unit: {
+    //     configFile: 'project/tests/karma.conf.grunt.js'
+    //   }
+    // },
 
     // node_modules\grunt-contrib-watch\README.md
     watch: {
+      utest: {
+        files: ['../build/js/main.js', 'project/tests/tests.js']
+      },
       js: {
         files: ['project/js/*.js'],
         tasks: ['uglify:beautyJs']
@@ -66,9 +69,14 @@ module.exports = function(grunt) {
         files: ['project/styles/*.less'],
         tasks: ['less']
       },
-      utest: {
-        files: ['../build/js/main.js', 'project/tests/tests.js']
-      }
+      ngdocs: {
+        files: ['project/js/*.js'],
+        tasks: ['ngdocs']
+      },
+      // karma: {
+      //   files: ['../build/js/main.js'],
+      //   tasks: ['karma']
+      // }
     }
 
   });
@@ -78,9 +86,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-jasmine');
+  // grunt.loadNpmTasks('grunt-karma');
+  // grunt.loadNpmTasks('grunt-jasmine');
 
   grunt.registerTask('_watcher', ['watch']);
-  grunt.registerTask('default', ['ngdocs','copy','uglify','less','karma', '_watcher']);
+  grunt.registerTask('default', ['ngdocs','copy','uglify','less',/*'karma',*/ '_watcher']);
 };

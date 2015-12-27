@@ -10,7 +10,7 @@ var testApp = angular.module('testApp',[]);
 
 /**
 	*	@ngdoc object
-	*	@name config
+	*	@name testApp.constant:config
 	*	@description
 	*
 	*	Contains main information for application configuration.
@@ -26,22 +26,16 @@ testApp.constant('config', {
 		note: 'Without buttons',
 		ok_confirm: 'Ok button',
 		ok_cancel_confirm: 'Ok & cancel buttons'
-	},
-
-	// msgUrl: '/api/notification/list',
-	// answerUrl: '/api/notification/confirm',
-	// requestInterval: 1000,
-	// closeWindowDelay: 290,
-	// autocloseTimeout: 90000
+	}
 });
 
 /**
-	*	@ngdoc function
-	*	@name getIcon
+	*	@ngdoc service
+	*	@name testApp.factory:getIcon
 	*	@returns {string} Icon file name
 	*	@description
 	*
-	*	Actual icon for category id.
+	*	Actual icon for category id. Work as a function. Return icon file name. For using in direcives.
 **/
 testApp.factory('getIcon', function() {
 	return function(type) {
@@ -57,16 +51,18 @@ testApp.factory('getIcon', function() {
 
 /**
 	*	@ngdoc service
-	*	@name messages
+	*	@name testApp.service:messages
 	*	@description
 	*
-	*	Prompts for new messages from the server
+	*	Prompts for new messages from the server.
+	*	Use <strong>messages.start(<i>messagesList</i>)</strong> for start server autorequesting; 
+	*	messageList - actual list of incoming messages.
 **/
 testApp.service('messages', NewMessages);
 
 /**
 	*	@ngdoc controller
-	*	@name testApp.controller.FrontPageController
+	*	@name testApp.controller:FrontPageController
 	*	@description
 	*
 	*	Main controller. Application interface handler.
@@ -94,15 +90,15 @@ testApp.controller('FrontPageController',function($scope, $http, config, message
 	// ready to display screen
 	app.ready = true;
 });
-
+ 
 /**
 	*	@ngdoc directive
-	*	@name app.directive.messageWindow
+	*	@name testApp.directive:messageWindow
 	*	@scope Use own scope
 	*	@restrict E
 	*	@description
 	*
-	*	Block of message og group box. 
+	*	Block of message or group box. 
 		<pre>
 			<message-window ng-model="msg"></message-window>
 		</pre>

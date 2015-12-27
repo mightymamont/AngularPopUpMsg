@@ -16,7 +16,17 @@ function addNewMessage(scope) {
 	}
 }
 
+
 // Get messages from server
+/**
+	*	@ngdoc function
+	*	@name testApp.private:NewMessages
+	*	@param {service} $http HTTP-service
+	*	@returns {object} Server request object
+	*	@description
+	*
+	*	Source object constructor for <strong>messages</strong> service with same functional.
+**/
 function NewMessages($http) {
 	var timer, messageArray;
 
@@ -52,11 +62,11 @@ function NewMessages($http) {
 ////////////////////////////
 
 /**
-	*	@ngdoc function
-	*	@name closeMsgWindow
+	*	@ngdoc service
+	*	@name testApp.private:closeMsgWindow
 	*	@param {element} element Directive parent element
 	*	@param {object} scope Directive's current scope
-	*	@param {service} HTTP-service for getting messages and sending of replies
+	*	@param {service} $http HTTP-service for getting messages and sending of replies
 	*	@returns {function} Click handler function
 	*	@description
 	*
@@ -80,7 +90,15 @@ function closeMsgWindow(element, scope, service) {
 	}
 }
 
-// функция отправления уведомления при закрытии окошка
+/**
+	*	@ngdoc service
+	*	@name testApp.private:sendConfirm
+	*	@param {service} $http HTTP-service for getting messages and sending of replies
+	*	@returns {function} Answer config function
+	*	@description
+	*
+	*	Sending confirmation to the server (ok or cancel). 
+**/
 function sendConfirm (service) {
 	return function(buttonType, msg) {
 		var answerData = {
@@ -102,7 +120,16 @@ function sendConfirm (service) {
 	}
 }
 
-// получить список сообщений для вывода
+/**
+	*	@ngdoc service
+	*	@name testApp.private:getMessagesList
+	*	@param {scope} scope direcive's scope
+	*	@param {element} element Directive parent element
+	*	@returns {function} Function of preparing with actual message list as argument.
+	*	@description
+	*
+	*	Prepare actual list of messages for output.
+**/
 function getMessagesList (scope, element) {
 	return function (msgList) {
 		var outArray = [];
@@ -120,7 +147,16 @@ function getMessagesList (scope, element) {
 	}
 }
 
-// установить обратный отсчёт закрытия
+/**
+	*	@ngdoc service
+	*	@name testApp.private:setCloseTimeout
+	*	@param {scope} direcive's scope
+	*	@param {element} element Directive parent element
+	*	@returns {function} Function for using in directive's scope.
+	*	@description
+	*
+	*	Autoclose current message window by timeout. 
+**/
 function setCloseTimeout(scope, element) {
 	return function(elt) {
 		if(!elt.$$countdown) {
@@ -131,7 +167,15 @@ function setCloseTimeout(scope, element) {
 	}
 }
 
-// отменить обратный отсчёт закрытия
+/**
+	*	@ngdoc service
+	*	@name testApp.private:clearCloseTimeout
+	*	@param {scope} direcive's scope
+	*	@returns {function} Function for using in directive's scope.
+	*	@description
+	*
+	*	Abort autoclose timeout. 
+**/
 function clearCloseTimeout (scope) {
 	return function(elt) {
 		if(elt.$$countdown) {
