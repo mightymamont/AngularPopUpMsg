@@ -1,3 +1,25 @@
+# Description
+1. Folder "/build" contains final result; for sources look to "/raw/project/".
+2. "raw/build.cmd" - start file for document generation, rebuilding of project, testing etc.
+3. "raw/run-tests.cmd" - start file only for tests (for results look to console and "/raw/project/tests/coverage/report" - coverage report); need installed karma.
+4. Folder "/docs" contains documentation (generation on build.cmd execution).
+
+Execute files only for OS Windows; commands in files - common for different OS.
+
+##Folders
+1. mocks - task and mocks
+2. build - ready project
+3. docs - documentation
+4. raw - project sources, dependencies and libs
+5. raw/libs - using libraries
+6. raw/node_modules - using modules for node.js
+7. raw/server - index file for HTTP server
+8. raw/project - project files
+9. raw/html - html files, raw/images - images, raw/js - javascript, raw/styles - less based styles
+10. raw/tests - unit testing files 
+
+--------------------------------
+
 # Что запускать
 1. В папке build находится конечный результат; исходники - в raw/project/
 2. raw/build.cmd - запускает генерацию документации, пересборку проекта, тестирование
